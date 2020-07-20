@@ -8,6 +8,7 @@ const app = express();
 
 app.get("/", (req, res) => {
   const content = renderToString(<App />);
+  console.log(content)
   const html = `
     <!doctype html>
     <html>
