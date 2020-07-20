@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./App";
 
-ReactDOM.hydrate(<div className="my-class" />, document.getElementById("root"));
+ReactDOM.hydrate(<App />, document.getElementById("root"));
 
 // @ts-ignore
 if (module.hot) {

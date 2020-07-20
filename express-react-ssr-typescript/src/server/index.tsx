@@ -1,12 +1,13 @@
 import express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
+import App from "../client/App";
 
 const PORT = "3000";
 const app = express();
 
 app.get("/", (req, res) => {
-  const content = renderToString(<div className="my-class" />);
+  const content = renderToString(<App />);
   const html = `
     <!doctype html>
     <html>
@@ -29,3 +30,4 @@ app.listen(PORT, (err) => {
 });
 
 export default app;
+
