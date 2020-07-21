@@ -7,13 +7,13 @@ const PORT = "3000";
 const app = express();
 
 app.get("/", (req, res) => {
-  const content = renderToString(<App />);
+  // const content = renderToString(<App />);
   const html = `
     <!doctype html>
     <html>
       <head />
       <body>
-        <div id="root">${content}</div>
+        <div id="root"></div>
         <script src="main.js"></script>
       </body>
     </html>`;
