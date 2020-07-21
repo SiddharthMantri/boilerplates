@@ -1,6 +1,6 @@
 import express from "express";
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import App from "../client/App";
 
 const PORT = "3000";
@@ -8,7 +8,6 @@ const app = express();
 
 app.get("/", (req, res) => {
   const content = renderToString(<App />);
-  console.log(content)
   const html = `
     <!doctype html>
     <html>
