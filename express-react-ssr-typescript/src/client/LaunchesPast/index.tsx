@@ -13,7 +13,10 @@ const GET_LAUNCHES_PAST = gql`
 `;
 
 const LaunchesPast = () => {
-//   const { loading, error, data } = useQuery(GET_LAUNCHES_PAST);
+  const { loading, error, data } = useQuery(GET_LAUNCHES_PAST, {
+    variables: { limit: 3}
+  });
+  
   const [
     getAllLaunchesPast,
     { loading: loadingGetAllLaunches, data: allLaunchesData },
@@ -25,7 +28,7 @@ const LaunchesPast = () => {
 
   return (
       <div>
-          <div>{JSON.stringify(allLaunchesData)}</div>
+          <div>{JSON.stringify(data)}</div>
           <button onClick={() => getAllLaunchesPast()}>Click me!</button>
       </div>
   );

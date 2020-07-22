@@ -1,31 +1,18 @@
 import express from "express";
 import React from "react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
-import App from "../client/App";
+import ssr from "./middlewares/ssr";
 
 const PORT = "3000";
 const app = express();
 
-app.get("/", (req, res) => {
-  // const content = renderToString(<App />);
-  const html = `
-    <!doctype html>
-    <html>
-      <head />
-      <body>
-        <div id="root"></div>
-        <script src="main.js"></script>
-      </body>
-    </html>`;
-
-  res.send(html);
-});
+// use the ssr middleware on this route
+app.use("/", ssr());
 
 app.listen(PORT, (err) => {
   if (err) {
     console.error(err);
   }
-
   console.log(`listening on port: ${PORT}`);
 });
 
