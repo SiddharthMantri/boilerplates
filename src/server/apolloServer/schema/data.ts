@@ -1,27 +1,32 @@
 export const books = [{
     book: "A wonderful book",
-    author: "Chris Martin"
+    author: "Chris",
+    id: 1
 }, {
     book: "Another wonderful book",
-    author: "Chris Martin"
+    author: "John",
+    id: 2
 },
 {
     book: "And again, another wonderful book",
-    author: "Chris Martin"
+    author: "Sid",
+    id: 3
 },
 ];
 
 export const authors = [{
-    name: "Chris Martin",
+    name: "Chris",
     location: "Barcelona",
     age: 25
 },
 {
-    name: "Martin",
+    name: "John",
     location: "Glasgow",
+    age: 30
 },
 {
     name: "Sid",
     location: "Madrid",
+    age: 35,
 },
 ]
