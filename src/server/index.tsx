@@ -14,6 +14,9 @@ type ServerArgs = {
 const expressServer = ({ mode, config }: ServerArgs): express.Application => {
   const app = express();
 
+  // apply the app as a middleware to the graphqlServer
+  graphqlServer.applyMiddleware({ app });
+
   app.use(express.static(path.resolve(__dirname, "dist")));
 
   if (mode !== "production") {
@@ -35,9 +38,6 @@ const expressServer = ({ mode, config }: ServerArgs): express.Application => {
 
   // use ssr as a middleware on all routes after the Webpack middlewares above have been run
   app.use(ssr());
-
-  // apply the app as a middleware to the graphqlServer
-  graphqlServer.applyMiddleware({ app });
   
   // app will be started in the development script
   return app;
