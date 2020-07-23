@@ -4,6 +4,7 @@ import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import ssr from "./middlewares/ssr";
+import graphqlServer from "./apolloServer/index";
 
 type ServerArgs = {
   mode: "production" | "development";
@@ -12,6 +13,7 @@ type ServerArgs = {
 
 const expressServer = ({ mode, config }: ServerArgs): express.Application => {
   const app = express();
+  graphqlServer.applyMiddleware({ app });
   app.use(express.static(path.resolve(__dirname, "dist")));
 
   if (mode !== "production") {
@@ -33,7 +35,7 @@ const expressServer = ({ mode, config }: ServerArgs): express.Application => {
 
   // use the ssr middleware on this route
   app.use("/", ssr());
-
+  
   return app;
 };
 

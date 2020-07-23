@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import { renderToStringWithData } from "@apollo/client/react/ssr";
 import { RequestHandler } from "express";
-import nodeFetch from "node-fetch";
+import fetch from "cross-fetch";
 import React from "react";
 import LaunchesPast from "../../client/LaunchesPast";
 
@@ -17,7 +17,7 @@ export default (): RequestHandler => (req, res, next) => {
     // API server, so we need to ensure it isn't firewalled, etc
     link: createHttpLink({
       uri: "https://api.spacex.land/graphql/",
-      fetch: nodeFetch,
+      fetch,
     }),
     cache: new InMemoryCache(),
   });
