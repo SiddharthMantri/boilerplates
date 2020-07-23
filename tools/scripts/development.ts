@@ -1,5 +1,4 @@
 import expressServer from "../../src/server";
-import { start } from "repl";
 import config from "../../webpack.config";
 
 const PORT = process.env.PORT || 3000;
