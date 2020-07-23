@@ -10,7 +10,7 @@ type ServerArgs = {
   config: Partial<webpack.Configuration>;
 };
 
-const expressServer = ({ mode, config }: ServerArgs) => {
+const expressServer = ({ mode, config }: ServerArgs): express.Application => {
   const app = express();
   app.use(express.static(path.resolve(__dirname, "dist")));
 
@@ -33,7 +33,7 @@ const expressServer = ({ mode, config }: ServerArgs) => {
 
   // use the ssr middleware on this route
   app.use("/", ssr());
-  
+
   return app;
 };
 

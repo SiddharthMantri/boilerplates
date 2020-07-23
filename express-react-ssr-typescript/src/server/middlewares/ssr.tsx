@@ -1,16 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import nodeFetch from "node-fetch";
 import {
-  ApolloProvider,
   ApolloClient,
-  InMemoryCache,
+  ApolloProvider,
   createHttpLink,
+  InMemoryCache,
 } from "@apollo/client";
 import { renderToStringWithData } from "@apollo/client/react/ssr";
+import { RequestHandler } from "express";
+import nodeFetch from "node-fetch";
+import React from "react";
 import LaunchesPast from "../../client/LaunchesPast";
 
-export default () => (req, res, next) => {
+export default (): RequestHandler => (req, res, next) => {
   const client = new ApolloClient({
     ssrMode: true,
     // Remember that this is the interface the SSR server will use to connect to the
