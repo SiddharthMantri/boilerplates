@@ -1,22 +1,15 @@
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import webpack from "webpack";
 import server from "../../src/server";
-import config from "../../webpack.config";
+import { start } from "repl";
 
-// @ts-ignore
-const compiler = webpack(config);
+const PORT = process.env.PORT || 3000;
 
-server.use(
-  webpackDevMiddleware(compiler, {
-    quiet: true,
-    noInfo: true,
-    publicPath: config.output.publicPath,
-  })
-);
+const startServer = () => {
+  server.listen(PORT, (...cb) => {
+    if (cb && cb.length) {
+      console.error(cb);
+    }
+    console.log(`listening on port: ${PORT}`);
+  });
+};
 
-server.use(
-  webpackHotMiddleware(compiler, {
-    log: false,
-  })
-);
+startServer();
