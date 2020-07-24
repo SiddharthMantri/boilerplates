@@ -3,6 +3,7 @@ import typeDefs from "./schema/typeDefs";
 import resolvers from "./schema/resolvers";
 
 const graphqlServer = new ApolloServer({
+  uploads: false,
   typeDefs,
   resolvers,
 });
