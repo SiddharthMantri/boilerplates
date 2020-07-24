@@ -9,6 +9,16 @@
     "lint": "eslint '**/*.{js,ts,tsx}' --max-warnings 20",
     "format": "prettier --write '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'"
   },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "npm run format"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
@@ -34,6 +44,8 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "html-webpack-plugin": "^4.0.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.1.3",
