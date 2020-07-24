@@ -3,8 +3,8 @@ import typeDefs from "./schema/typeDefs";
 import resolvers from "./schema/resolvers";
 
 const graphqlServer = new ApolloServer({
-    typeDefs,
-    resolvers
+  typeDefs,
+  resolvers,
 });
 
 export default graphqlServer;
