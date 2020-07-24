@@ -14,23 +14,27 @@ const GET_LAUNCHES_PAST = gql`
 
 const LaunchesPast = () => {
   const { loading, error, data } = useQuery(GET_LAUNCHES_PAST, {
-    variables: { limit: 3}
+    variables: { limit: 3 },
   });
-  
+
   const [
     getAllLaunchesPast,
     { loading: loadingGetAllLaunches, data: allLaunchesData },
-  ] = useLazyQuery(GET_LAUNCHES_PAST,     {
-    variables: { limit: 50 }
+  ] = useLazyQuery(GET_LAUNCHES_PAST, {
+    variables: { limit: 50 },
   });
 
-  if (allLaunchesData) console.log(allLaunchesData.launchesPast.length);
+  if (allLaunchesData && !loading && !error)
+    // eslint-disable-next-line no-console
+    console.log(allLaunchesData.launchesPast.length);
 
   return (
-      <div>
-          <div>{JSON.stringify(data)}</div>
-          <button onClick={() => getAllLaunchesPast()}>Click me!</button>
-      </div>
+    <div>
+      <div>{JSON.stringify(data)}</div>
+      <button type="button" onClick={() => getAllLaunchesPast()}>
+        Click me!
+      </button>
+    </div>
   );
 };
 

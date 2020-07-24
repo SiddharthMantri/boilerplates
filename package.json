@@ -5,7 +5,9 @@
     "node": "^12.13.0"
   },
   "scripts": {
-    "dev": "ts-node-dev tools/scripts/development"
+    "dev": "ts-node-dev tools/scripts/development",
+    "lint": "eslint '**/*.{js,ts,tsx}' --max-warnings 20",
+    "format": "prettier --write '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -17,11 +19,22 @@
     "@types/node": "^13.11.1",
     "@types/react-dom": "^16.9.6",
     "@types/react-router-dom": "^5.1.3",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.1",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "html-webpack-plugin": "^4.0.4",
+    "prettier": "^2.0.5",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.1.3",
     "ts-loader": "^6.2.2",

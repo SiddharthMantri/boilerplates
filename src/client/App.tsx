@@ -1,5 +1,10 @@
 import React from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider, NormalizedCacheObject } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  NormalizedCacheObject,
+} from "@apollo/client";
 import LaunchesPast from "./LaunchesPast";
 
 declare global {

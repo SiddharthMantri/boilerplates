@@ -38,7 +38,7 @@ const expressServer = ({ mode, config }: ServerArgs): express.Application => {
 
   // use ssr as a middleware on all routes after the Webpack middlewares above have been run
   app.use(ssr());
-  
+
   // app will be started in the development script
   return app;
 };
