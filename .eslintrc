@@ -40,8 +40,7 @@
         ]
       }
     ],
-    // following two rules are only temporary until we have time to refactor
-    // and provide types for everything that's necessary
+    // the next 2 rules are only temporary 
     "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/ban-ts-comment": 0,
     "no-underscore-dangle": 0,
