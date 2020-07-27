@@ -12,25 +12,18 @@ import { RequestHandler } from "express";
 import fetch from "cross-fetch";
 import React from "react";
 import LaunchesPast from "../../client/LaunchesPast";
-import typeDefs from "../apolloServer/schema/typeDefs";
-import resolvers from "../apolloServer/schema/resolvers";
 
 export default (): RequestHandler => async (req, res, next) => {
   const link = createHttpLink({
-    uri: "https://api.spacex.land/graphql/",
+    uri: "http://localhost:3000/graphql",
     fetch,
-  });
-
-  const executableSchema = makeExecutableSchema({
-    typeDefs,
-    resolvers,
   });
 
   const client = new ApolloClient({
     ssrMode: true,
     // Remember that this is the interface the SSR server will use to connect to the
     // API server, so we need to ensure it isn't firewalled, etc
-    link: ApolloLink.from([new SchemaLink({ schema: executableSchema }), link]),
+    link,
     cache: new InMemoryCache(),
   });
 
@@ -42,6 +35,7 @@ export default (): RequestHandler => async (req, res, next) => {
 
   renderToStringWithData(App).then((content) => {
     const initialState = client.extract();
+    console.log(initialState);
     const html = `
         <!doctype html>
         <html>

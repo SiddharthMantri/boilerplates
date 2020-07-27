@@ -4,8 +4,7 @@ import {
   InMemoryCache,
   ApolloProvider,
   NormalizedCacheObject,
-  HttpLink,
-  ApolloLink,
+  createHttpLink,
 } from "@apollo/client";
 import LaunchesPast from "./LaunchesPast";
 
@@ -15,16 +14,12 @@ declare global {
   }
 }
 
-const spacexLink = new HttpLink({
-  uri: "https://api.spacex.land/graphql/",
-});
-
-const localLink = new HttpLink({
+const link = createHttpLink({
   uri: "/graphql",
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.concat(spacexLink, localLink),
+  link,
   cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
 });
 

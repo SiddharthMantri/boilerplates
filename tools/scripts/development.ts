@@ -11,13 +11,15 @@ const startServer = () => {
   });
 
   // Start and listen on port;
-  server.listen(PORT, (...cb) => {
-    if (cb && cb.length) {
+  server.then((app) => {
+    app.listen(PORT, (...cb) => {
+      if (cb && cb.length) {
+        // eslint-disable-next-line no-console
+        console.error(cb);
+      }
       // eslint-disable-next-line no-console
-      console.error(cb);
-    }
-    // eslint-disable-next-line no-console
-    console.log(`listening on port: ${PORT}`);
+      console.log(`listening on port: ${PORT}`);
+    });
   });
 };
 

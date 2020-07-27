@@ -3,18 +3,25 @@ import path from "path";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+import { ApolloServer } from "apollo-server-express";
 import ssr from "./middlewares/ssr";
-import graphqlServer from "./apolloServer/index";
+import createSchemas from "./apolloServer/index";
 
 type ServerArgs = {
   mode: "production" | "development";
   config: Partial<webpack.Configuration>;
 };
 
-const expressServer = ({ mode, config }: ServerArgs): express.Application => {
+const expressServer = async ({
+  mode,
+  config,
+}: ServerArgs): Promise<express.Application> => {
   const app = express();
 
   // apply the app as a middleware to the graphqlServer
+  const schema = await createSchemas();
+
+  const graphqlServer = new ApolloServer({ schema });
   graphqlServer.applyMiddleware({ app });
 
   app.use(express.static(path.resolve(__dirname, "dist")));
