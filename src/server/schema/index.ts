@@ -9,8 +9,7 @@ import fetch from "cross-fetch";
 import typeDefs from "./localSchema/typeDefs";
 import resolvers from "./localSchema/resolvers";
 
-// Async fn to stitch local and remote schemas
-const createSchemas = async () => {
+const createSchema = async () => {
   const localSchema = makeExecutableSchema({
     typeDefs,
     resolvers,
@@ -29,4 +28,4 @@ const createSchemas = async () => {
   });
 };
 
-export default createSchemas;
+export default createSchema;

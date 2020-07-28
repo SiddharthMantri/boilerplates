@@ -10,7 +10,6 @@ const startServer = () => {
     mode: "development",
   });
 
-  // Start and listen on port;
   server.then((app) => {
     app.listen(PORT, (...cb) => {
       if (cb && cb.length) {
