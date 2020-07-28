@@ -1,4 +1,3 @@
-import { ApolloServer } from "apollo-server-express";
 import { HttpLink } from "apollo-link-http";
 import {
   makeExecutableSchema,
@@ -7,9 +6,10 @@ import {
   introspectSchema,
 } from "graphql-tools";
 import fetch from "cross-fetch";
-import typeDefs from "./schema/typeDefs";
-import resolvers from "./schema/resolvers";
+import typeDefs from "./localSchema/typeDefs";
+import resolvers from "./localSchema/resolvers";
 
+// Async fn to stitch local and remote schemas
 const createSchemas = async () => {
   const localSchema = makeExecutableSchema({
     typeDefs,
@@ -28,9 +28,5 @@ const createSchemas = async () => {
     schemas: [localSchema, remoteSchema],
   });
 };
-
-// const graphqlServer = new ApolloServer({
-//   schema: createSchemas(),
-// });
 
 export default createSchemas;
