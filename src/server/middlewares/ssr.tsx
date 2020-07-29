@@ -22,13 +22,13 @@ export default (): RequestHandler => async (req, res, next) => {
     cache: new InMemoryCache(),
   });
 
-  const App = (
+  const appTree = (
     <ApolloProvider client={client}>
       <LaunchesPast />
     </ApolloProvider>
   );
 
-  renderToStringWithData(App).then((content) => {
+  renderToStringWithData(appTree).then((content) => {
     const initialState = client.extract();
     const html = `
         <!doctype html>
