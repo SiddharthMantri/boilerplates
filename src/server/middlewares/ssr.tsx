@@ -3,6 +3,7 @@ import {
   ApolloProvider,
   InMemoryCache,
   createHttpLink,
+  gql,
 } from "@apollo/client";
 import { renderToStringWithData } from "@apollo/client/react/ssr";
 import { RequestHandler } from "express";
@@ -16,10 +17,38 @@ export default (): RequestHandler => async (req, res, next) => {
     fetch,
   });
 
+  const cache = new InMemoryCache({
+    typePolicies: {
+      Book: { keyFields: ["id"] },
+    },
+  });
+
+  const book = {
+    book: "The latest book",
+    author: "Chris",
+    id: 5,
+    __typename: "Book",
+  };
+
+  const query = gql`
+    query getTest {
+      test
+      books
+    }
+  `;
+
+  cache.writeQuery({
+    query,
+    data: {
+      test: ["abc"],
+      books: [book],
+    },
+  });
+
   const client = new ApolloClient({
     ssrMode: true,
     link,
-    cache: new InMemoryCache(),
+    cache,
   });
 
   const appTree = (

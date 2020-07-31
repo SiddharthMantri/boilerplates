@@ -5,7 +5,7 @@
     "node": "^12.13.0"
   },
   "scripts": {
-    "dev": "ts-node-dev tools/scripts/development",
+    "dev": "ts-node-dev --inspect -- tools/scripts/development",
     "lint": "eslint '**/*.{js,ts,tsx}' --max-warnings 20",
     "format": "prettier --write '*.{js,ts,tsx}' 'src/**/*.{js,ts,tsx}'"
   },
